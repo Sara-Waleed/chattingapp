@@ -41,8 +41,6 @@ class SingUp extends StatelessWidget {
                   ),),
                 ),
                 SizedBox(height: 10,),
-                TextFieldLogIn(hintText: "Name"),
-                SizedBox(height: 10,),
                 TextFieldLogIn(hintText: "Email"),
                 SizedBox(height: 10,),
                 TextFieldLogIn(hintText: "Password"),
