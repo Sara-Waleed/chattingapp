@@ -7,17 +7,21 @@ class TextFieldLogIn extends StatelessWidget {
    TextFieldLogIn({
      this.hintText,
      this.onchange,
+     this.obscureText=false,
     super.key,
   });
+   bool obscureText;
 final String? hintText;
 final Function(String)? onchange;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: obscureText,
       validator: (value) {
         if(value!.isEmpty){
           return "value is wrong";
         }
+        return "";
       },
      onChanged: onchange,
       decoration: InputDecoration(
@@ -92,6 +96,37 @@ final  Message messaage;
         child: Text(messaage.message,style: TextStyle(color: Colors.white,),),
       ),
 
+    );
+  }
+}
+//***************************
+class chattingbubbleforfriend extends StatelessWidget {
+  chattingbubbleforfriend({
+    super.key,
+    required this.messaage
+  });
+  final  Message messaage;
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.centerRight,
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 16,vertical: 8),
+        padding: EdgeInsets.only(left: 16,top: 16,bottom: 16,right: 32),
+        decoration: BoxDecoration(
+            color: Color(0xff006D84),
+            borderRadius: BorderRadius.only(
+                topLeft:Radius.circular(30),
+                topRight:Radius.circular(30),
+                bottomLeft: Radius.circular(30)
+            )
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(messaage.message,style: TextStyle(color: Colors.white,),),
+        ),
+
+      ),
     );
   }
 }

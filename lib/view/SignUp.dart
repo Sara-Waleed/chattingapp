@@ -78,7 +78,7 @@ inAsyncCall: isloaded,
                         setState(() {});
                         try {
                                         await CreateUserAccount();
-                                        Navigator.pop(context);
+                                        Navigator.of(context).pushNamed("chat");
                                             } on FirebaseAuthException catch (e) {
                                               if (e.code == 'weak-password') {
                                                 showingSnapBar(context,"The password provided is too weak." );
@@ -101,7 +101,9 @@ inAsyncCall: isloaded,
                           onTap: (){
                             Navigator.of(context).pop(context);
                           },
-                            child: Text("Log IN ",style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),)),
+                            child: Text("Log IN ",
+                              style: TextStyle(
+                                  color: Colors.white,fontSize: 15,fontWeight: FontWeight.bold),)),
                       ],
                     ),
                     // Spacer(flex: 1,),

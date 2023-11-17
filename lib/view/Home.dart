@@ -5,13 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 class ChatingPage extends StatelessWidget {
    ChatingPage({Key? key}) : super(key: key);
+   //to get the end of the list view:
+   final controller2=ScrollController();
    // to get or access the collection by its name:
-   CollectionReference message = FirebaseFirestore.instance.collection(KDatabase);
-  TextEditingController control=TextEditingController();
+   CollectionReference message =
+             FirebaseFirestore.instance.collection(KDatabase);
+  TextEditingController control = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    var emaill= ModalRoute.of(context)!.settings.arguments ;
     return StreamBuilder<QuerySnapshot>(
-        stream:  message.snapshots(),
+        stream:  message.orderBy(KCreatedAt,descending: true).snapshots(),
         builder: (context, snapshot) {
          if(snapshot.hasData){
            List<Message> messagesList=[];
@@ -35,12 +39,21 @@ class ChatingPage extends StatelessWidget {
                  children: [
                    Expanded(
                      child: ListView.builder(
+                       reverse: true,
+                       controller: controller2,
                        itemBuilder: (context, index) {
-                         return Align(
+                         return
+                           messagesList[index].id== emaill ?
+                           Align(
                              alignment: Alignment.centerLeft,
-                             child: chattingbubble(messaage: messagesList[index],));
+                             child: chattingbubble(messaage: messagesList[index],)) :
+                           Align(
+                             alignment: Alignment.centerLeft,
+                           child: chattingbubbleforfriend(messaage: messagesList[index]),
+                         ) ;
                        },
                        itemCount: messagesList.length,
+
                      ),
                    ),
                    Padding(
@@ -49,9 +62,16 @@ class ChatingPage extends StatelessWidget {
                        controller: control,
                        onSubmitted: (data){
                          message.add({
-                           'message':data,
+                           KDatabase:data,
+                           KCreatedAt :DateTime.now(),
+                           'id': emaill,
                          });
                          control.clear();
+                         controller2.animateTo(
+                             0,
+                             duration: Duration(milliseconds: 500),
+                             curve: Curves.easeIn
+                         );
                        },
                        decoration: InputDecoration(
                            hintText: "Send Message",

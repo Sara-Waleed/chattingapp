@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         "SingUp":(context) => SingUp(),
         "chat":(context) => ChatingPage(),
       },
-     home: ChatingPage(),
+     home: LogIn(),
     );
   }
 }
