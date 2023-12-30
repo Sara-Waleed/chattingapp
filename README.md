@@ -1,6 +1,12 @@
 # chattingapp
 
 A new Flutter project.
+<div style="display: flex; justify-content: center;">
+  <img src="https://github.com/Sara-Waleed/chattingapp/assets/92535228/f094![2](https://github.com/Sara-Waleed/chattingapp/assets/92535228/1bc8a3f8-faaf-4d19-a138-5834cbd5b7ed)
+8a05-5b49-43d5-8159-55fdb7a90e5c" alt="Image 1" width="300" />
+  <img src="https://github.com/Sara-Waleed/chattingapp/assets/92535228/09c89896-135c-4d07-b66a-6e4783eccdc1" alt="Image 2" width="300" />
+
+</div>
 
 ## Getting Started
 
